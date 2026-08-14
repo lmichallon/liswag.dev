@@ -1,0 +1,68 @@
+---
+interface Props {
+	t: {
+		title: string;
+		body: string;
+	};
+}
+const { t } = Astro.props;
+---
+
+<section id="about-section" class="grid-display px-2.4 pt-4.8 pb-[14.8rem] cursor-none">
+    <h2 class="md:text-md col-span-6">{t.title}</h2>
+    <p class="md:text-sm col-span-6 whitespace-pre-line">{t.body}</p>
+</section>
+
+<img
+    id="about-cursor-img"
+    src="/prout.jpg"
+    alt=""
+    class="pointer-events-none fixed top-0 left-0 w-[22rem] opacity-0 transition-opacity duration-300 z-50 select-none"
+    style="will-change: transform;"
+    aria-hidden="true"
+/>
+
+<script>
+    const section = document.getElementById('about-section');
+    const img = document.getElementById('about-cursor-img') as HTMLImageElement;
+
+    let mouseX = 0;
+    let mouseY = 0;
+    let currentX = 0;
+    let currentY = 0;
+    let isInSection = false;
+    let animating = false;
+
+    const LERP = 0.12;
+
+    function lerp(a: number, b: number, t: number) {
+        return a + (b - a) * t;
+    }
+
+    function animate() {
+        if (!isInSection) { animating = false; return; }
+        animating = true;
+
+        currentX = lerp(currentX, mouseX, LERP);
+        currentY = lerp(currentY, mouseY, LERP);
+
+        img.style.transform = `translate(${currentX}px, ${currentY}px)`;
+        requestAnimationFrame(animate);
+    }
+
+    section?.addEventListener('mouseenter', () => {
+        isInSection = true;
+        img.style.opacity = '1';
+        if (!animating) animate();
+    });
+
+    section?.addEventListener('mouseleave', () => {
+        isInSection = false;
+        img.style.opacity = '0';
+    });
+
+    section?.addEventListener('mousemove', (e: MouseEvent) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    });
+</script>

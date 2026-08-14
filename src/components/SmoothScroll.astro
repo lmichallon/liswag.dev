@@ -1,0 +1,23 @@
+<script>
+	import Lenis from 'lenis';
+
+	let lenis: InstanceType<typeof Lenis>;
+	let rafId: number;
+
+	function initLenis() {
+		if (lenis) lenis.destroy();
+		cancelAnimationFrame(rafId);
+
+		lenis = new Lenis();
+
+		function raf(time: number) {
+			lenis.raf(time);
+			rafId = requestAnimationFrame(raf);
+		}
+
+		rafId = requestAnimationFrame(raf);
+	}
+
+	initLenis();
+	document.addEventListener('astro:after-swap', initLenis);
+</script>

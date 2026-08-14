@@ -1,10 +1,17 @@
 ---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { ClientRouter } from 'astro:transitions';
+import SmoothScroll from '../components/SmoothScroll.astro';
 import '../styles/global.css';
+
 const { content } = Astro.props;
-const description = content.description ?? "Lisa Michallon — Front-end Developer";
+const description = content.description ?? 'Lisa Michallon — Front-end Developer';
+const lang = Astro.currentLocale ?? 'fr';
+const otherLang = lang === 'fr' ? 'en' : 'fr';
+const otherLangUrl = getRelativeLocaleUrl(otherLang, '/');
 ---
 
-<html lang="en">
+<html lang={lang}>
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -15,8 +22,18 @@ const description = content.description ?? "Lisa Michallon — Front-end Develop
 		<link rel="manifest" href="/site.webmanifest" />
 		<title>{content.title}</title>
 		<link rel="preload" href="/fonts/ABCWhyteTrial-Regular.otf" as="font" type="font/otf" crossorigin />
+		<ClientRouter />
 	</head>
 	<body>
+		<nav class="fixed top-2.4 right-2.4 z-50">
+			<a
+				href={otherLangUrl}
+				class="text-xs text-white mix-blend-difference uppercase tracking-widest opacity-60 hover:opacity-100 transition-opacity"
+			>
+				{otherLang}
+			</a>
+		</nav>
 		<slot />
+		<SmoothScroll />
 	</body>
 </html>

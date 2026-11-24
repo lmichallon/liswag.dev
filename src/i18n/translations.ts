@@ -11,6 +11,7 @@ export const translations = {
     },
     qualities: {
       quote: `Chaque expérience \nm'a amenée à découvrir \nde nouveaux outils, de nouveaux \nframeworks, de nouvelles façons \nd'organiser le code.`,
+      quote2: `Au fil des projets \net des équipes, j'ai \nappris à m'adapter vite.`,
     },
   },
   en: {
@@ -19,10 +20,11 @@ export const translations = {
     hero: "Front-End Developer",
     about: {
       title: "Why development?",
-      body: `I grew up on the internet. I spent hours tweaking my Tumblr theme or customizing my Skyblog. I loved it ! Making things look exactly how I wanted them.\n\nAt university, I studied English. Learning a language means breaking down its rules, its syntax, its internal logic. Maybe that's what later drew me to code: the pleasure of understanding a new language.\n\nFront-end is where it all comes together. My love for beautiful things. Polished interfaces, the details that make a difference, the feeling that every decision was made with intention. There's something satisfying about seeing a well-crafted interface take shape.`,
+      body: `I grew up on the internet. I spent hours tweaking my Tumblr theme or customising my Skyblog. I loved it ! Making things look exactly how I wanted them.\n\nAt university, I studied English. Learning a language means breaking down its rules, its syntax, its internal logic. Maybe that's what later drew me to code: the pleasure of understanding a new language.\n\nFront-end is where it all comes together. My love for beautiful things. Polished interfaces, the details that make a difference, the feeling that every decision was made with intention. There's something satisfying about seeing a well-crafted interface take shape.`,
     },
     qualities: {
-      quote: `Every experience \nhas led me to discover \nnew tools, new \nframeworks, new ways \nof organizing code.`,
+      quote: `Every experience \nhas led me to discover \nnew tools, new \nframeworks, new ways \nof organising code.`,
+      quote2: `Through projects \nand teams, I've learnt \nto adapt quickly.`,
     },
   },
 } as const;

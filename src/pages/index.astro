@@ -1,16 +1,5 @@
 ---
-import About from '../components/About/About.astro';
-import Qualities from '../components/Qualities/Qualities.astro';
-import Base from '../layouts/Base.astro';
-import { useTranslations } from '../i18n/translations';
-
-const t = useTranslations('fr');
+import HomePage from '../components/HomePage.astro';
 ---
 
-<Base content={{ title: t.title, description: t.description }}>
-	<main class="bg-black h-dvh flex items-center justify-center rounded-b-md">
-		<h1 class="text-white text-lg md:text-2xl text-center animate-fade-up">{t.hero}</h1>
-	</main>
-	<About t={t.about} />
-	<Qualities t={t.qualities} />
-</Base>
+<HomePage />

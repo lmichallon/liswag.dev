@@ -1,10 +1,11 @@
 ---
-import About from '../../components/About/About.astro';
-import Qualities from '../../components/Qualities/Qualities.astro';
-import Base from '../../layouts/Base.astro';
-import { useTranslations } from '../../i18n/translations';
+import About from './About/About.astro';
+import Qualities from './Qualities/Qualities.astro';
+import Base from '../layouts/Base.astro';
+import { useTranslations, type Lang } from '../i18n/translations';
 
-const t = useTranslations('en');
+const lang = (Astro.currentLocale ?? 'fr') as Lang;
+const t = useTranslations(lang);
 ---
 
 <Base content={{ title: t.title, description: t.description }}>

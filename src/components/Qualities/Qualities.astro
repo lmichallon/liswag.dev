@@ -1,4 +1,5 @@
 ---
+import { tv } from 'tailwind-variants';
 import Grain from '../Grain.astro';
 
 interface Props {
@@ -8,16 +9,28 @@ interface Props {
 	};
 }
 const { t } = Astro.props;
+
+const styles = tv({
+	slots: {
+		section: "mt-2.4 mx-2.4 mb-2.4",
+		card: "sticky top-[4.8rem] h-[calc(100vh-9.6rem)] bg-pimento px-2.4 py-4.8 rounded-md relative overflow-hidden",
+		quotes: "relative z-10",
+		quoteInitial: "text-lg whitespace-pre-line leading-4.2 font-normal block transition-[opacity,transform] duration-500 ease-in-out will-change-[opacity,transform]",
+		quoteReveal: "text-lg whitespace-pre-line leading-4.2 font-normal block absolute top-0 opacity-0 translate-y-[20px] transition-[opacity,transform] duration-500 ease-in-out will-change-[opacity,transform]",
+	},
+});
+
+const { section, card, quotes, quoteInitial, quoteReveal } = styles();
 ---
 
-<div id="qualities" class="mt-2.4 mx-2.4 mb-2.4" style="height: calc(140vh - 4.8rem)">
-	<section class="sticky top-[4.8rem] h-[calc(100vh-9.6rem)] bg-pimento px-2.4 py-4.8 rounded-md relative overflow-hidden">
+<div id="qualities" class={section()} style="height: calc(140vh - 4.8rem)">
+	<section class={card()}>
 		<Grain />
-		<div class="relative z-10">
-			<strong id="quote-initial" class="text-lg whitespace-pre-line leading-4.2 font-normal block" style="transition: opacity 0.5s cubic-bezier(0.4,0,0.2,1), transform 0.5s cubic-bezier(0.4,0,0.2,1); will-change: opacity, transform;">
+		<div class={quotes()}>
+			<strong id="quote-initial" class={quoteInitial()}>
 				{t.quote}
 			</strong>
-			<strong id="quote-transition" class="text-lg whitespace-pre-line leading-4.2 font-normal block absolute top-0" style="opacity: 0; transform: translateY(20px); transition: opacity 0.5s cubic-bezier(0.4,0,0.2,1), transform 0.5s cubic-bezier(0.4,0,0.2,1); will-change: opacity, transform;">
+			<strong id="quote-reveal" class={quoteReveal()}>
 				{t.quote2}
 			</strong>
 		</div>
@@ -33,7 +46,7 @@ const { t } = Astro.props;
 
 	function init() {
 		const qualities = getEl('qualities');
-		const quotes = [getEl('quote-initial'), getEl('quote-transition')];
+		const quotes = [getEl('quote-initial'), getEl('quote-reveal')];
 
 		function update() {
 			const rect = qualities.getBoundingClientRect();

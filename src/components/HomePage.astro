@@ -1,4 +1,5 @@
 ---
+import { tv } from 'tailwind-variants';
 import About from './About/About.astro';
 import Qualities from './Qualities/Qualities.astro';
 import Base from '../layouts/Base.astro';
@@ -6,11 +7,20 @@ import { useTranslations, type Lang } from '../i18n/translations';
 
 const lang = (Astro.currentLocale ?? 'fr') as Lang;
 const t = useTranslations(lang);
+
+const styles = tv({
+	slots: {
+		hero: "bg-black h-dvh flex items-center justify-center rounded-b-md",
+		headline: "text-white text-lg md:text-2xl text-center animate-fade-up",
+	},
+});
+
+const { hero, headline } = styles();
 ---
 
 <Base content={{ title: t.title, description: t.description }}>
-	<main class="bg-black h-dvh flex items-center justify-center rounded-b-md">
-		<h1 class="text-white text-lg md:text-2xl text-center animate-fade-up">{t.hero}</h1>
+	<main class={hero()}>
+		<h1 class={headline()}>{t.hero}</h1>
 	</main>
 	<About t={t.about} />
 	<Qualities t={t.qualities} />

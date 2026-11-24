@@ -1,13 +1,23 @@
 ---
+import { tv } from 'tailwind-variants';
+
 interface Props {
 	baseFrequency?: number;
 	opacity?: number;
 }
 
 const { baseFrequency = 1.25, opacity = 0.25 } = Astro.props;
+
+const styles = tv({
+	slots: {
+		grain: "absolute inset-0 w-full h-full pointer-events-none mix-blend-multiply",
+	},
+});
+
+const { grain } = styles();
 ---
 
-<svg class="absolute inset-0 w-full h-full pointer-events-none" style="mix-blend-mode: multiply" aria-hidden="true">
+<svg class={grain()} aria-hidden="true">
     <filter id="grain">
         <feTurbulence type="fractalNoise" baseFrequency={baseFrequency} numOctaves="2" stitchTiles="stitch" />
         <feColorMatrix type="saturate" values="0" />

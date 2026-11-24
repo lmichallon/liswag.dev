@@ -1,6 +1,7 @@
 ---
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import { ClientRouter } from 'astro:transitions';
+import { tv } from 'tailwind-variants';
 import SmoothScroll from '../components/SmoothScroll.astro';
 import '../styles/global.css';
 
@@ -9,6 +10,15 @@ const description = content.description ?? 'Lisa Michallon — Front-end Develop
 const lang = Astro.currentLocale ?? 'fr';
 const otherLang = lang === 'fr' ? 'en' : 'fr';
 const otherLangUrl = getRelativeLocaleUrl(otherLang, '/');
+
+const styles = tv({
+	slots: {
+		navigation: "fixed top-2.4 right-2.4 z-50",
+		languageSwitch: "text-xs text-white mix-blend-difference uppercase tracking-widest opacity-60 hover:opacity-100 transition-opacity",
+	},
+});
+
+const { navigation, languageSwitch } = styles();
 ---
 
 <html lang={lang}>
@@ -25,10 +35,10 @@ const otherLangUrl = getRelativeLocaleUrl(otherLang, '/');
 		<ClientRouter />
 	</head>
 	<body>
-		<nav class="fixed top-2.4 right-2.4 z-50">
+		<nav class={navigation()}>
 			<a
 				href={otherLangUrl}
-				class="text-xs text-white mix-blend-difference uppercase tracking-widest opacity-60 hover:opacity-100 transition-opacity"
+				class={languageSwitch()}
 			>
 				{otherLang}
 			</a>

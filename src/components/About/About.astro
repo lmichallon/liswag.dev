@@ -8,7 +8,7 @@ interface Props {
 const { t } = Astro.props;
 ---
 
-<section id="about-section" class="grid-display px-2.4 pt-4.8 pb-[14.8rem] cursor-none">
+<section id="about-section" class="grid-display px-2.4 pt-4.8 pb-[14.8rem] cursor-default">
     <h2 class="md:text-md col-span-6">{t.title}</h2>
     <p class="md:text-sm col-span-6 whitespace-pre-line">{t.body}</p>
 </section>
@@ -46,7 +46,7 @@ const { t } = Astro.props;
         currentX = lerp(currentX, mouseX, LERP);
         currentY = lerp(currentY, mouseY, LERP);
 
-        img.style.transform = `translate(${currentX}px, ${currentY}px)`;
+        img.style.transform = `translate(${currentX + 18}px, ${currentY + 18}px)`;
         requestAnimationFrame(animate);
     }
 

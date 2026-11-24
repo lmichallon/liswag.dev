@@ -1,6 +1,6 @@
 ---
 import { tv } from 'tailwind-variants';
-import Grain from '../Grain.astro';
+import Noise from '../Noise.astro';
 
 interface Props {
 	t: {
@@ -25,7 +25,7 @@ const { section, card, quotes, quoteInitial, quoteReveal } = styles();
 
 <div id="qualities" class={`${section()} h-[calc(140vh-4.8rem)]`}>
 	<section class={card()}>
-		<Grain />
+		<Noise />
 		<div class={quotes()}>
 			<strong id="quote-initial" class={quoteInitial()}>
 				{t.quote}

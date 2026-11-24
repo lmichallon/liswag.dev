@@ -1,4 +1,6 @@
 ---
+import { tv } from 'tailwind-variants';
+
 interface Props {
 	t: {
 		title: string;
@@ -6,19 +8,29 @@ interface Props {
 	};
 }
 const { t } = Astro.props;
+
+const styles = tv({
+	slots: {
+		section: "grid-display px-2.4 pt-4.8 pb-[14.8rem] cursor-default",
+		title: "md:text-md col-span-6",
+		body: "md:text-sm col-span-6 whitespace-pre-line",
+		cursorImage: "pointer-events-none fixed top-0 left-0 w-[22rem] opacity-0 transition-opacity duration-300 z-50 select-none will-change-transform",
+	},
+});
+
+const { section, title, body, cursorImage } = styles();
 ---
 
-<section id="about-section" class="grid-display px-2.4 pt-4.8 pb-[14.8rem] cursor-default">
-    <h2 class="md:text-md col-span-6">{t.title}</h2>
-    <p class="md:text-sm col-span-6 whitespace-pre-line">{t.body}</p>
+<section id="about-section" class={section()}>
+    <h2 class={title()}>{t.title}</h2>
+    <p class={body()}>{t.body}</p>
 </section>
 
 <img
     id="about-cursor-img"
     src="/prout.jpg"
     alt=""
-    class="pointer-events-none fixed top-0 left-0 w-[22rem] opacity-0 transition-opacity duration-300 z-50 select-none"
-    style="will-change: transform;"
+    class={cursorImage()}
     aria-hidden="true"
 />
 
@@ -33,9 +45,9 @@ const { t } = Astro.props;
     let isInSection = false;
     let animating = false;
 
-    const LERP = 0.12;
+    const SMOOTHING_FACTOR = 0.12;
 
-    function lerp(a: number, b: number, t: number) {
+    function interpolate(a: number, b: number, t: number) {
         return a + (b - a) * t;
     }
 
@@ -43,8 +55,8 @@ const { t } = Astro.props;
         if (!isInSection) { animating = false; return; }
         animating = true;
 
-        currentX = lerp(currentX, mouseX, LERP);
-        currentY = lerp(currentY, mouseY, LERP);
+        currentX = interpolate(currentX, mouseX, SMOOTHING_FACTOR);
+        currentY = interpolate(currentY, mouseY, SMOOTHING_FACTOR);
 
         img.style.transform = `translate(${currentX + 18}px, ${currentY + 18}px)`;
         requestAnimationFrame(animate);

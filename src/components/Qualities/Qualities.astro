@@ -1,4 +1,6 @@
 ---
+import Grain from '../Grain.astro';
+
 interface Props {
 	t: {
 		quote: string;
@@ -7,8 +9,9 @@ interface Props {
 const { t } = Astro.props;
 ---
 
-<section class="h-[calc(100vh-9.6rem)] bg-pimento m-2.4 px-2.4 py-4.8 rounded-md">
-    <strong class="text-lg whitespace-pre-line leading-4.2 font-normal">
+<section class="h-[calc(100vh-9.6rem)] bg-pimento m-2.4 px-2.4 py-4.8 rounded-md relative overflow-hidden">
+    <Grain />
+    <strong class="text-lg whitespace-pre-line leading-4.2 font-normal relative z-10">
         {t.quote}
     </strong>
 </section>

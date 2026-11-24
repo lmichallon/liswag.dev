@@ -12,11 +12,11 @@ const { t } = Astro.props;
 
 const styles = tv({
 	slots: {
-		section: "mt-2.4 mx-2.4 mb-2.4",
-		card: "sticky top-[4.8rem] h-[calc(100vh-9.6rem)] bg-pimento px-2.4 py-4.8 rounded-md overflow-hidden",
+		section: "mt-1.6 mx-1.6 mb-1.6 md:mt-2.4 md:mx-2.4 md:mb-2.4",
+		card: "sticky top-[4.8rem] h-[65vh] md:h-[calc(100vh-9.6rem)] bg-pimento px-1.6 py-2.4 md:px-2.4 md:py-4.8 rounded-md overflow-hidden",
 		quotes: "relative z-10",
-		quoteInitial: "text-lg whitespace-pre-line leading-4.2 font-normal block transition-[opacity,transform] duration-500 ease-in-out will-change-[opacity,transform]",
-		quoteReveal: "text-lg whitespace-pre-line leading-4.2 font-normal block absolute top-0 opacity-0 translate-y-[2rem] transition-[opacity,transform] duration-500 ease-in-out will-change-[opacity,transform]",
+		quoteInitial: "text-sm md:text-lg whitespace-pre-line leading-2.4 md:leading-4.2 font-normal block transition-[opacity,transform] duration-500 ease-in-out will-change-[opacity,transform]",
+		quoteReveal: "text-sm md:text-lg whitespace-pre-line leading-2.4 md:leading-4.2 font-normal block absolute top-0 opacity-0 translate-y-[2rem] transition-[opacity,transform] duration-500 ease-in-out will-change-[opacity,transform]",
 	},
 });
 

@@ -16,14 +16,14 @@ const styles = tv({
 		card: "sticky top-[4.8rem] h-[calc(100vh-9.6rem)] bg-pimento px-2.4 py-4.8 rounded-md overflow-hidden",
 		quotes: "relative z-10",
 		quoteInitial: "text-lg whitespace-pre-line leading-4.2 font-normal block transition-[opacity,transform] duration-500 ease-in-out will-change-[opacity,transform]",
-		quoteReveal: "text-lg whitespace-pre-line leading-4.2 font-normal block absolute top-0 opacity-0 translate-y-[20px] transition-[opacity,transform] duration-500 ease-in-out will-change-[opacity,transform]",
+		quoteReveal: "text-lg whitespace-pre-line leading-4.2 font-normal block absolute top-0 opacity-0 translate-y-[2rem] transition-[opacity,transform] duration-500 ease-in-out will-change-[opacity,transform]",
 	},
 });
 
 const { section, card, quotes, quoteInitial, quoteReveal } = styles();
 ---
 
-<div id="qualities" class={section()} style="height: calc(140vh - 4.8rem)">
+<div id="qualities" class={`${section()} h-[calc(140vh-4.8rem)]`}>
 	<section class={card()}>
 		<Grain />
 		<div class={quotes()}>
@@ -55,10 +55,10 @@ const { section, card, quotes, quoteInitial, quoteReveal } = styles();
 			const swapped = progress > 0.5;
 
 			quotes[0].style.opacity = swapped ? '0' : '1';
-			quotes[0].style.transform = swapped ? 'translateY(-20px)' : 'translateY(0)';
+			quotes[0].style.transform = swapped ? 'translateY(-2rem)' : 'translateY(0)';
 
 			quotes[1].style.opacity = swapped ? '1' : '0';
-			quotes[1].style.transform = swapped ? 'translateY(0)' : 'translateY(20px)';
+			quotes[1].style.transform = swapped ? 'translateY(0)' : 'translateY(2rem)';
 		}
 
 		window.addEventListener('scroll', update, { passive: true });

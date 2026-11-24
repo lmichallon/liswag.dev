@@ -58,7 +58,7 @@ const { section, title, body, cursorImage } = styles();
         currentX = interpolate(currentX, mouseX, SMOOTHING_FACTOR);
         currentY = interpolate(currentY, mouseY, SMOOTHING_FACTOR);
 
-        img.style.transform = `translate(${currentX + 18}px, ${currentY + 18}px)`;
+        img.style.transform = `translate(${(currentX + 18) / 10}rem, ${(currentY + 18) / 10}rem)`;
         requestAnimationFrame(animate);
     }
 
